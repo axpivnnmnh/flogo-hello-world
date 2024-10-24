@@ -1,0 +1,288 @@
+{
+  "imports": [
+    "github.com/project-flogo/flow",
+    "github.com/project-flogo/contrib/activity/noop",
+    "github.com/tibco/flogo-general/src/app/General/activity/log",
+    "github.com/tibco/flogo-general/src/app/General/activity/httpresponse",
+    "github.com/project-flogo/contrib/activity/actreturn",
+    "github.com/tibco/flogo-general/src/app/General/trigger/rest",
+    "github.com/project-flogo/contrib/function/string"
+  ],
+  "name": "HelloWorldApp",
+  "description": "",
+  "version": "1.0.1",
+  "type": "flogo:app",
+  "appModel": "1.1.1",
+  "tags": [],
+  "triggers": [
+    {
+      "ref": "#rest",
+      "name": "tibco-wi-rest",
+      "description": "Simple REST Trigger",
+      "settings": {
+        "port": 9999,
+        "APISpecUpdate": true,
+        "swagger": {
+          "filename": "openapi.json",
+          "content": "data:application/json;base64,ewogICJvcGVuYXBpIjogIjMuMC4zIiwKICAiaW5mbyI6IHsKICAgICJ0aXRsZSI6ICJIZWxsb1dvcmxkIC0gT3BlbkFQSSAzLjAiLAogICAgImRlc2NyaXB0aW9uIjogIklkZW9tYXRpYyBIZWxsbyBXb3JsZCBTYW1wbGUiLAogICAgImNvbnRhY3QiOiB7CiAgICAgICJlbWFpbCI6ICJtYXJrLm11c3NldHRAY2xvdWQuY29tIgogICAgfSwKICAgICJsaWNlbnNlIjogewogICAgICAibmFtZSI6ICJBcGFjaGUgMi4wIiwKICAgICAgInVybCI6ICJodHRwOi8vd3d3LmFwYWNoZS5vcmcvbGljZW5zZXMvTElDRU5TRS0yLjAuaHRtbCIKICAgIH0sCiAgICAidmVyc2lvbiI6ICIxLjAuMCIKICB9LAogICJleHRlcm5hbERvY3MiOiB7CiAgICAiZGVzY3JpcHRpb24iOiAiRmluZCBvdXQgbW9yZSBhYm91dCBIZWxsbyBXb3JsZCIsCiAgICAidXJsIjogImh0dHBzOi8vZW4ud2lraXBlZGlhLm9yZy93aWtpLyUyMkhlbGxvLF9Xb3JsZCElMjJfcHJvZ3JhbSIKICB9LAogICJ0YWdzIjogWwogICAgewogICAgICAibmFtZSI6ICJoZWxsb3dvcmxkIiwKICAgICAgImRlc2NyaXB0aW9uIjogIklkaW9tYXRpYyBIZWxsbyBXb3JsZCBBcHBsaWNhdGlvbiIsCiAgICAgICJleHRlcm5hbERvY3MiOiB7CiAgICAgICAgImRlc2NyaXB0aW9uIjogIkZpbmQgb3V0IG1vcmUiLAogICAgICAgICJ1cmwiOiAiaHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvJTIySGVsbG8sX1dvcmxkISUyMl9wcm9ncmFtIgogICAgICB9CiAgICB9CiAgXSwKICAicGF0aHMiOiB7CiAgICAiL2hlbGxvd29ybGQiOiB7CiAgICAgICJnZXQiOiB7CiAgICAgICAgInRhZ3MiOiBbCiAgICAgICAgICAiaGVsbG93b3JsZCIKICAgICAgICBdLAogICAgICAgICJzdW1tYXJ5IjogImhlbGxvd29ybGQiLAogICAgICAgICJkZXNjcmlwdGlvbiI6ICJNdWx0aXBsZSBzdGF0dXMgdmFsdWVzIGNhbiBiZSBwcm92aWRlZCB3aXRoIGNvbW1hIHNlcGFyYXRlZCBzdHJpbmdzIiwKICAgICAgICAib3BlcmF0aW9uSWQiOiAiaGVsbG93b3JsZCIsCiAgICAgICAgInBhcmFtZXRlcnMiOiBbCiAgICAgICAgICB7CiAgICAgICAgICAgICJuYW1lIjogIm5hbWUiLAogICAgICAgICAgICAiaW4iOiAicXVlcnkiLAogICAgICAgICAgICAiZGVzY3JpcHRpb24iOiAiTmFtZSIsCiAgICAgICAgICAgICJyZXF1aXJlZCI6IHRydWUsCiAgICAgICAgICAgICJzY2hlbWEiOiB7CiAgICAgICAgICAgICAgInR5cGUiOiAic3RyaW5nIgogICAgICAgICAgICB9CiAgICAgICAgICB9CiAgICAgICAgXSwKICAgICAgICAicmVzcG9uc2VzIjogewogICAgICAgICAgIjIwMCI6IHsKICAgICAgICAgICAgImRlc2NyaXB0aW9uIjogInN1Y2Nlc3NmdWwgb3BlcmF0aW9uIiwKICAgICAgICAgICAgImNvbnRlbnQiOiB7CiAgICAgICAgICAgICAgImFwcGxpY2F0aW9uL2pzb24iOiB7CiAgICAgICAgICAgICAgICAic2NoZW1hIjogewogICAgICAgICAgICAgICAgICAiJHJlZiI6ICIjL2NvbXBvbmVudHMvc2NoZW1hcy9yZXNwb25zZSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KICAgICAgICAgIH0KICAgICAgICB9CiAgICAgIH0KICAgIH0KICB9LAogICJjb21wb25lbnRzIjogewogICAgInNjaGVtYXMiOiB7CiAgICAgICJyZXNwb25zZSI6IHsKICAgICAgICAidHlwZSI6ICJvYmplY3QiLAogICAgICAgICJwcm9wZXJ0aWVzIjogewogICAgICAgICAgIm1lc3NhZ2UiOiB7CiAgICAgICAgICAgICJ0eXBlIjogInN0cmluZyIsCiAgICAgICAgICAgICJkZXNjcmlwdGlvbiI6ICJyZXNwb25zZSIKICAgICAgICAgIH0KICAgICAgICB9CiAgICAgIH0KICAgIH0KICB9Cn0="
+        },
+        "swaggerVersion": "v3",
+        "apiVersion": "1.0.0",
+        "secureConnection": false
+      },
+      "id": "ReceiveHTTPMessage",
+      "handlers": [
+        {
+          "description": "",
+          "settings": {
+            "APISpecPath": "/helloworld",
+            "Method": "GET",
+            "reqType": "application/json",
+            "Path": "/helloworld",
+            "OutputValidation": false
+          },
+          "action": {
+            "ref": "github.com/project-flogo/flow",
+            "settings": {
+              "flowURI": "res://flow:New_flow"
+            },
+            "input": {
+              "queryParams": "=$.queryParams"
+            },
+            "output": {
+              "code": "=$.code",
+              "responseBody": "=$.responseBody"
+            }
+          },
+          "reply": {
+            "code": 200,
+            "configureResponseCodes": true,
+            "message": ""
+          },
+          "schemas": {
+            "reply": {
+              "responseBody": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "fe_metadata": "{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}",
+                "feSchemaMap": {}
+              },
+              "responseCodesSchema": {
+                "type": "json",
+                "value": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"code\":{\"type\":\"number\"},\"responseType\":{\"type\":\"string\"},\"responseSchema\":{\"type\":\"string\"}}}}",
+                "fe_metadata": "[{\"code\":200,\"responseType\":\"object\",\"responseSchema\":\"{\\\"type\\\":\\\"object\\\",\\\"properties\\\":{\\\"message\\\":{\\\"type\\\":\\\"string\\\",\\\"description\\\":\\\"response\\\"}}}\"}]",
+                "feSchemaMap": {}
+              }
+            },
+            "output": {
+              "queryParams": {
+                "type": "json",
+                "value": "{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]}",
+                "fe_metadata": "[{\"parameterName\":\"name\",\"repeating\":\"false\",\"type\":\"string\",\"required\":\"true\"}]"
+              }
+            }
+          },
+          "name": "New_flow"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "id": "flow:New_flow",
+      "data": {
+        "name": "New_flow",
+        "description": "",
+        "links": [
+          {
+            "id": 1,
+            "from": "StartActivity",
+            "to": "LogMessage",
+            "type": "label",
+            "label": "StartActivity to LogMessage"
+          },
+          {
+            "id": 2,
+            "from": "LogMessage",
+            "to": "ConfigureHTTPResponse",
+            "type": "label",
+            "label": "LogMessage to ConfigureHTTPResponse"
+          },
+          {
+            "id": 3,
+            "from": "ConfigureHTTPResponse",
+            "to": "Return",
+            "type": "label",
+            "label": "ConfigureHTTPResponse to Return"
+          }
+        ],
+        "tasks": [
+          {
+            "id": "StartActivity",
+            "name": "StartActivity",
+            "description": "NoOp Activity",
+            "activity": {
+              "ref": "#noop"
+            }
+          },
+          {
+            "id": "LogMessage",
+            "name": "LogMessage",
+            "description": "Simple Log Message Activity",
+            "activity": {
+              "ref": "#log",
+              "input": {
+                "Log Level": "INFO",
+                "flowInfo": false,
+                "message": "=string.concat('Hello, ',$flow.queryParams.name)",
+                "logLevel": ""
+              }
+            }
+          },
+          {
+            "id": "ConfigureHTTPResponse",
+            "name": "ConfigureHTTPResponse",
+            "description": "Configure HTTP Response Activity",
+            "activity": {
+              "ref": "#httpresponse",
+              "input": {
+                "trigger": "",
+                "responsecode": "",
+                "input": {
+                  "mapping": {
+                    "body": {
+                      "message": "=string.concat('Hello, ',$flow.queryParams.name)"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "id": "Return",
+            "name": "Return",
+            "description": "Simple Return Activity",
+            "activity": {
+              "ref": "#actreturn",
+              "settings": {
+                "mappings": {
+                  "code": "=$activity[ConfigureHTTPResponse].code",
+                  "responseBody": "=$activity[ConfigureHTTPResponse].response"
+                }
+              }
+            }
+          }
+        ],
+        "fe_metadata": "eyJTdGFydEFjdGl2aXR5Ijp7IngiOjEwMCwieSI6MTAwfSwiTG9nTWVzc2FnZSI6eyJ4IjoyNjYsInkiOjkxfSwiQ29uZmlndXJlSFRUUFJlc3BvbnNlIjp7IngiOjUxOCwieSI6OTB9LCJSZXR1cm4iOnsieCI6NzIxLCJ5Ijo5Mn19",
+        "metadata": {
+          "input": [
+            {
+              "name": "queryParams",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"name\":{\"type\":\"string\"}}"
+              }
+            },
+            {
+              "name": "requestURI",
+              "type": "string"
+            },
+            {
+              "name": "method",
+              "type": "string"
+            }
+          ],
+          "output": [
+            {
+              "name": "code",
+              "type": "integer"
+            },
+            {
+              "name": "responseBody",
+              "type": "object",
+              "schema": {
+                "type": "json",
+                "value": "{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}"
+              }
+            }
+          ],
+          "fe_metadata": {
+            "input": "{\"type\":\"object\",\"title\":\"ReceiveHTTPMessage\",\"properties\":{\"queryParams\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"}},\"required\":[\"name\"]},\"requestURI\":{\"type\":\"string\",\"required\":false},\"method\":{\"type\":\"string\",\"required\":false}}}",
+            "output": "{\"type\":\"object\",\"title\":\"Inputs\",\"properties\":{\"code\":{\"type\":\"integer\",\"required\":false},\"responseBody\":{\"type\":\"object\",\"properties\":{\"body\":{\"type\":\"any\"},\"headers\":{\"type\":\"object\"}}}},\"required\":[]}"
+          }
+        },
+        "explicitReply": true
+      }
+    }
+  ],
+  "properties": [],
+  "connections": {},
+  "contrib": "W3sicmVmIjoiZ2l0aHViLmNvbS90aWJjby9mbG9nby1nZW5lcmFsL3NyYy9hcHAvR2VuZXJhbCIsImlkIjoiR2VuZXJhbCIsInZlcnNpb24iOiIxLjYuMiIsInRhZyI6IjEuNi4yLWIwMiIsIm5hbWUiOiJHZW5lcmFsIiwiczNsb2NhdGlvbiI6IlRpYmNvL0dlbmVyYWwiLCJpc1VzZXJFeHRlbnNpb24iOmZhbHNlfV0=",
+  "metadata": {
+    "endpoints": [
+      {
+        "protocol": "http",
+        "port": "9999",
+        "spec": {
+          "name": "HelloWorldApp",
+          "version": "1.0.0"
+        },
+        "title": "ReceiveHTTPMessage",
+        "swagger": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "HelloWorldApp",
+            "version": "1.0.0",
+            "description": "Simple REST Trigger"
+          },
+          "paths": {
+            "/helloworld": {
+              "get": {
+                "summary": "New_flow",
+                "operationId": "get_helloworld",
+                "parameters": [
+                  {
+                    "name": "name",
+                    "in": "query",
+                    "description": "Request parameter",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "responses": {
+                  "200": {
+                    "description": "",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/schema1"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "components": {
+            "schemas": {
+              "schema1": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "response"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "flogoVersion": "2.25.1"
+  }
+}
