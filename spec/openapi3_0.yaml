@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: HelloWorld - OpenAPI 3.0
+  description: Ideomatic Hello World Sample
+  contact:
+    email: mark.mussett@cloud.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Hello World
+  url: https://en.wikipedia.org/wiki/%22Hello,_World!%22_program
+tags:
+  - name: helloworld
+    description: Idiomatic Hello World Application
+    externalDocs:
+      description: Find out more
+      url: https://en.wikipedia.org/wiki/%22Hello,_World!%22_program
+paths:
+  /helloworld:
+    get:
+      tags:
+        - helloworld
+      summary: helloworld
+      description: Returns a message containing a personalised greeting
+      operationId: helloworld
+      parameters:
+        - name: name
+          in: query
+          description: Name
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response'
+components:
+  schemas:
+    response:
+      type: object
+      properties:
+        message:
+          type: string
+          description: response
